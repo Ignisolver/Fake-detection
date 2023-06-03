@@ -4,7 +4,7 @@
 2. Download datasets 1-4 into it. 
 3. Run compressor.py to create compressed versions of datasets  
 
-Now You can use data loader for loading data from datasets  
+Now You can use data loader for loading data from datasets - see main.py
 ## DataLoader
 You can use load function with parameters:  
 1. dataset_nr - number of your dataset (1-4)
