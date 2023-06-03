@@ -2,7 +2,7 @@
 ## To start  
 1. Create data folder in Fake-detection folder
 2. Download datasets 1-4 into it. 
-3. Run compressor.py to create compressed versions of datasets
+3. Run compressor.py to create compressed versions of datasets  
 Now You can use data loader for loading data from datasets  
 ## DataLoader
 You can use load function with parameters:  
