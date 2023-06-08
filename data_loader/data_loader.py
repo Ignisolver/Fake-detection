@@ -70,11 +70,3 @@ class DataLoader:
 
     def _check_dataset_size(self, f):
         assert len(os.listdir(f)) >= self.samples_amount, "Dataset is to small"
-
-
-
-
-
-
-
-
