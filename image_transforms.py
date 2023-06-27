@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageStat
 from typing import List
 from random import randint
 
@@ -21,6 +21,18 @@ class ImageSampler:
                                   data=region)
             sample_list.append(img_t)
         return sample_list
+
+    @staticmethod
+    def sample_high_variance(img: Image, sample_size: int = 20, n_samples: int = 5, top_n: int = 5):
+        if top_n > n_samples:
+            top_n = n_samples
+        all_samples = ImageSampler.sample_image(img=img, sample_size=sample_size, n_samples=n_samples)
+
+        def sort_by_variance(val):
+            pass
+
+        samples_sorted_by_variance = all_samples.sort(key=sort_by_variance)
+        return samples_sorted_by_variance[0:top_n-1]
 
 
 class TransformHandler:
