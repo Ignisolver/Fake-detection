@@ -17,10 +17,26 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(X.size, 61440)
 
 
+class ModelTraining(unittest.TestCase):
+
+    def test_train_svm_on_data(self):
+        from models import SVM
+        svm = SVM()
+
+        from data_loader import DataLoader
+        dl = DataLoader(data_set_nr=1,
+                        samples_amount=5000,
+                        shuffle=True,
+                        compressed=False)
+        X, y = dl.load()
+        svm.model_train(X, y)
+        self.assertTrue(True)
+
+
 #  TODO If the below test is passed, the project should be done
 class ProjectExpectedResult(unittest.TestCase):
 
-    def train_and_save_new_model(self):
+    def test_train_and_save_new_model(self):
         import random
         random.seed(10)
 
@@ -37,8 +53,8 @@ class ProjectExpectedResult(unittest.TestCase):
         model_sets = ModelGen.get_classifitcation_models(n_models=5)
 
         # 3: Combination searching
-        from model_cracker import CombinationCracker
-        cracking_case = CombinationCracker(data=dl, transforms=transform_sets.tf, models=model_sets.mod)
+        # from model_cracker import CombinationCracker
+        # cracking_case = CombinationCracker(data=dl, transforms=transform_sets.tf, models=model_sets.mod)
 
 
 if __name__ == '__main__':

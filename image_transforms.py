@@ -1,7 +1,7 @@
 from PIL import Image, ImageStat
 from typing import List
 from random import randint
-
+import numpy as np
 
 class ImageSampler:
 
@@ -42,6 +42,14 @@ class TransformHandler:
     def transform_image(self, im: Image) -> Image:
         return self.transform_method(im)
 
+    def transform_image_array(self, X: np.ndarray):
+        res = []
+        for i in range(X.shape[0]):
+            image = X[i, :, :, :]
+            image_transformed = self.transform_method(Image.fromarray(image, mode="RGB"))
+            res.append(image_transformed)
+        return res
+
 
 class TransformPipe:
 
@@ -53,3 +61,9 @@ class TransformPipe:
         for t in self.transform_list:
             im_t = t(im_t)
         return im_t
+
+    def transform_image_array(self, X: np.ndarray) -> np.ndarray:
+        X_transformed = np.ndarray(shape=[X.shape])
+        for i in range(len(X)):
+            X_transformed[i] = self.transform_image(Image.fromarray(X[i]))
+        return X_transformed
